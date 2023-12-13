@@ -45,4 +45,18 @@ public class PatientController {
     public int deleteByID (@PathVariable int id){
         return patientRepository.deleteByID(id);
     }
+
+    @PatchMapping ("/{id}")
+    public int updatePatient(@PathVariable int id, @RequestBody Patient updatedPatient) {
+
+        Patient patientToUpdate = patientRepository.getByID( id );
+        if(updatedPatient.getName() != null) patientToUpdate.setName( updatedPatient.getName() );
+        if (updatedPatient.getAge() != 0) patientToUpdate.setAge( updatedPatient.getAge() );
+        if (updatedPatient.getGender() != null) patientToUpdate.setGender( updatedPatient.getGender() );
+        if (updatedPatient.getInjuryType() != null) patientToUpdate.setInjuryType( updatedPatient.getInjuryType() );
+        if (updatedPatient.getPhoneNumber() != null) patientToUpdate.setPhoneNumber( updatedPatient.getPhoneNumber() );
+        if (updatedPatient.getHasInsurance() != null) patientToUpdate.setHasInsurance( updatedPatient.getHasInsurance());
+
+        return patientRepository.update( patientToUpdate );
+    }
 }

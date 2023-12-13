@@ -1,6 +1,7 @@
 package pl.dorota.forphysio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,7 +23,7 @@ public class PatientRepository {
         return jdbcTemplate.update( "insert into patient (name, age, gender, phone_number, has_insurance, injury_type_id) " +
                         "values (?, ?, ?, ?, ?, ?)",
                 patient.getName(), patient.getAge(), patient.getGender().name(), patient.getPhoneNumber(),
-                patient.isHasInsurance(), injuryTypeID );
+                patient.getHasInsurance(), injuryTypeID );
 
     }
 
@@ -48,5 +49,12 @@ public class PatientRepository {
                 .map( patient -> new PatientContactDTO( patient.getName(), patient.getPhoneNumber() ) ).toList();
 
         return contactList;
+    }
+
+    public int update(Patient updatedPatient) {
+        int injutyTypeId = updatedPatient.getInjuryType().ordinal() + 1;
+        return jdbcTemplate.update( "UPDATE patient SET name=?, age=?, gender=?, phone_number=?, has_insurance=?, injury_type_id=? WHERE id = ?",
+                updatedPatient.getName(), updatedPatient.getAge(), updatedPatient.getGender().name(),
+                updatedPatient.getPhoneNumber(), updatedPatient.getHasInsurance(), injutyTypeId, updatedPatient.getId());
     }
 }
