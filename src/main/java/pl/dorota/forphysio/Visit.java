@@ -8,5 +8,10 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode
 public class Visit {
-    int patient_id;
+    int visitId;
+    String name;
+    String date;
+
+
+
 }
