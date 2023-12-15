@@ -1,10 +1,12 @@
 package pl.dorota.forphysio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/visit")
@@ -24,8 +26,13 @@ public class VisitController {
 
 
     @GetMapping ("")
-    public List<Visit> getVisits(){
-        return visitRepository.getVisits();
+    public CollectionModel<EntityModel<Visit>> getVisits(){
+        List<Visit> visitList = visitRepository.getVisits();
+        List<EntityModel<Visit>> entityVisitList = visitList
+                .stream()
+                .map( visit -> EntityModel.of( visit ) )
+                .toList();
+        return CollectionModel.of( entityVisitList, WebMvcLinkBuilder.linkTo(VisitController.class).withSelfRel() );
     }
 
     @GetMapping ("/{patientId}")

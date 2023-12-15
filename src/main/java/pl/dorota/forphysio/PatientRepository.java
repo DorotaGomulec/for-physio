@@ -46,7 +46,7 @@ public class PatientRepository {
                 BeanPropertyRowMapper.newInstance( Patient.class ) );
 
         List<PatientContactDTO> contactList = patientList.stream()
-                .map( patient -> new PatientContactDTO( patient.getName(), patient.getPhoneNumber() ) ).toList();
+                .map( patient -> new PatientContactDTO( patient.getId(), patient.getName(), patient.getPhoneNumber() ) ).toList();
 
         return contactList;
     }

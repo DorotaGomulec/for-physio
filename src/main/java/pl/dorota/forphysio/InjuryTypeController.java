@@ -1,6 +1,9 @@
 package pl.dorota.forphysio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +22,13 @@ public class InjuryTypeController {
     }
 
     @GetMapping ("")
-    public List<InjuryTypeDTO> getAllInjuryTypes() {
-        return injuryTypeRepository.getAll();
+    public CollectionModel<EntityModel<InjuryTypeDTO>> getAllInjuryTypes() {
+        List<InjuryTypeDTO> injuryTypeDTOList = injuryTypeRepository.getAll();
+        List<EntityModel<InjuryTypeDTO>> entityInjuryTypeDTOList = injuryTypeDTOList
+                .stream()
+                .map( injuryTypeDTO -> EntityModel.of( injuryTypeDTO ) ).toList();
+
+        return CollectionModel.of( entityInjuryTypeDTOList,
+                WebMvcLinkBuilder.linkTo( InjuryTypeController.class ).withSelfRel() );
     }
 }
