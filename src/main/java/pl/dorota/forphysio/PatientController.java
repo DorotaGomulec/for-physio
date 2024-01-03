@@ -1,9 +1,11 @@
 package pl.dorota.forphysio;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,7 +75,7 @@ public class PatientController {
     }
 
     @PostMapping("")
-    public int addPatient(@RequestBody Patient patient) {
+    public int addPatient( @Validated @RequestBody Patient patient) {
         return patientRepository.addPatient( patient );
     }
 

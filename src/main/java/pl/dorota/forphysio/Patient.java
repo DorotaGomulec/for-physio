@@ -1,9 +1,12 @@
 package pl.dorota.forphysio;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.format.annotation.NumberFormat;
 
 import java.util.Date;
@@ -13,6 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 
 public class Patient {
+
+
     private int id;
     @NotBlank (message = "Field name can not be blank")
     private String name;
