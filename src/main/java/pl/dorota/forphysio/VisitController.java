@@ -51,14 +51,15 @@ public class VisitController {
                 .map( visit -> EntityModel.of( visit ) ).toList();
 
         for (EntityModel<Visit> visitEntityModel : visitEntityList) {
-            visitEntityModel.add( WebMvcLinkBuilder.linkTo( VisitController.class ).slash( patientId ).withRel( "delete_visit" ),
-                    WebMvcLinkBuilder.linkTo( VisitController.class ).withSelfRel().withRel( "all_visits_all_patients" ));
+            visitEntityModel.add( WebMvcLinkBuilder.linkTo( VisitController.class ).withSelfRel().withRel( "all_visits_all_patients" ));
         }
 
         Link link = (Link) WebMvcLinkBuilder.linkTo( VisitController.class ).slash( patientId ).withSelfRel();
 
         return CollectionModel.of( visitEntityList, link );
     }
+
+
 
         @DeleteMapping("/{visitId}")
         public int deleteByVisitID ( @PathVariable int visitId){
