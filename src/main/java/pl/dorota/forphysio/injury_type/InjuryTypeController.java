@@ -1,4 +1,4 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.injury_type;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

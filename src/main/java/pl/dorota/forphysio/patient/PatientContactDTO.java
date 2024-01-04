@@ -1,4 +1,4 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.patient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

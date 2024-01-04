@@ -1,4 +1,4 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.visit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

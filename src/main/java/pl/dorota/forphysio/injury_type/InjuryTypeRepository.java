@@ -1,9 +1,10 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.injury_type;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pl.dorota.forphysio.injury_type.InjuryType;
+import pl.dorota.forphysio.injury_type.InjuryTypeDTO;
 
 import java.util.Arrays;
 import java.util.List;

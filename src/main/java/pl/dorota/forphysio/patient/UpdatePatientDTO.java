@@ -1,11 +1,11 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.patient;
 
-import jakarta.persistence.Id;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import pl.dorota.forphysio.injury_type.InjuryType;
 
 @Data
 @Valid

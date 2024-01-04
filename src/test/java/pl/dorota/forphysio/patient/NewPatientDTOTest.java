@@ -1,30 +1,29 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.patient;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
+import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class PatientTest {
+class NewPatientDTOTest {
 
     private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();;
-    private Patient patient;
+    private NewPatientDTO patient;
     private String name;
     private int age;
-    private Set<ConstraintViolation<Patient>> violations;
+    private String phoneNumber;
+    private Set<ConstraintViolation<NewPatientDTO>> violations;
 
     @BeforeEach
     void beforeEach() {
-        patient = new Patient();
+        patient = new NewPatientDTO();
     }
 
     @Test
@@ -71,6 +70,43 @@ class PatientTest {
         Assert.assertEquals( 1, violations.size() );
 
     }
+
+    @Test
+    void setPhoneNumber_paramsOk_noConstraintViolation(){
+        phoneNumber = "222333444";
+        patient.setPhoneNumber(phoneNumber );
+        patient.setName( "David" );
+        violations = validator.validate(patient);
+
+        Assert.assertEquals( 0,violations.size() );
+
+    }
+
+    @Test
+    void setPhoneNumber_phoneNumbSizeBelowLimit_ConstraintViolation(){
+        phoneNumber = "123";
+        patient.setPhoneNumber( phoneNumber );
+        patient.setName( "David" );
+
+        violations = validator.validate(patient);
+
+        Assert.assertEquals( 1,violations.size() );
+
+    }
+
+    @Test
+    void setPhoneNumber_phoneNumbSizeOverLimit_ConstraintViolation(){
+        phoneNumber = "123 123 123 1231";
+        patient.setPhoneNumber( phoneNumber );
+        patient.setName( "David" );
+
+        violations = validator.validate(patient);
+
+        Assert.assertEquals( 1,violations.size() );
+
+    }
+
+
 
 
 }

@@ -1,4 +1,4 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.injury_type;
 
 import lombok.Data;
 import lombok.Getter;

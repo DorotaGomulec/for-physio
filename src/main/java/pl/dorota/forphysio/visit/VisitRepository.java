@@ -1,12 +1,12 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.visit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pl.dorota.forphysio.visit.Visit;
 
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class VisitRepository {

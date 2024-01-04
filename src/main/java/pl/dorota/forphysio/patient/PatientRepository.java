@@ -1,10 +1,13 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.patient;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pl.dorota.forphysio.patient.NewPatientDTO;
+import pl.dorota.forphysio.patient.Patient;
+import pl.dorota.forphysio.patient.PatientContactDTO;
+import pl.dorota.forphysio.patient.PatientDTO;
 
 import java.util.List;
 
@@ -27,9 +30,14 @@ public class PatientRepository {
 
     }
 
-    public List<Patient> getAll() {
+    public List<PatientDTO> getAll() {
         return jdbcTemplate.query( "select * from all_info_all_patients",
-                BeanPropertyRowMapper.newInstance( Patient.class ) );
+                BeanPropertyRowMapper.newInstance( PatientDTO.class ) );
+    }
+
+    public PatientDTO getAllInfoByID(int id) {
+        return jdbcTemplate.queryForObject( "select * from all_info_all_patients where id = ?",
+                BeanPropertyRowMapper.newInstance( PatientDTO.class ), id );
     }
 
     public Patient getByID(int id) {

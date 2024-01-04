@@ -1,4 +1,4 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.patient;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import pl.dorota.forphysio.injury_type.InjuryType;
 
 @Data
 @NoArgsConstructor

@@ -1,12 +1,12 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.patient;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import pl.dorota.forphysio.visit.VisitController;
 
 import java.util.List;
 
@@ -27,14 +27,14 @@ public class PatientController {
     }
 
     @GetMapping("/all")
-    public CollectionModel<EntityModel<Patient>> getAllPatients() {
-        List<Patient> patientList = patientRepository.getAll();
-        List<EntityModel<Patient>> entityPatientList = patientList
+    public CollectionModel<EntityModel<PatientDTO>> getAllPatients() {
+        List<PatientDTO> patientList = patientRepository.getAll();
+        List<EntityModel<PatientDTO>> entityPatientList = patientList
                 .stream()
                 .map( patient -> EntityModel.of( patient ) )
                 .toList();
 
-        for (EntityModel<Patient> patient : entityPatientList) {
+        for (EntityModel<PatientDTO> patient : entityPatientList) {
             int patientId = patient.getContent().getId();
             patient.add( WebMvcLinkBuilder.linkTo( PatientController.class ).slash( patientId ).withSelfRel() );
         }
@@ -44,13 +44,13 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public EntityModel<Patient> getByID(@PathVariable int id) {
+    public EntityModel<PatientDTO> getAllInfoByID(@PathVariable int id) {
         
         String hisHer = null;
         if (patientRepository.getByID( id ).getGender() == Gender.MALE) hisHer = "his";
         if (patientRepository.getByID( id ).getGender() == Gender.FEMALE) hisHer = "her";
         
-        return EntityModel.of( patientRepository.getByID( id ),
+        return EntityModel.of( patientRepository.getAllInfoByID( id ),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( id ).withSelfRel(),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( "/all" ).withRel( "all_patient" ),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( id ).withRel( "delete" ),

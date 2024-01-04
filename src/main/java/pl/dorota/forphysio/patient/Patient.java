@@ -1,17 +1,12 @@
-package pl.dorota.forphysio;
+package pl.dorota.forphysio.patient;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.format.annotation.NumberFormat;
-
-import java.util.Date;
+import pl.dorota.forphysio.injury_type.InjuryType;
 
 @Data
 @NoArgsConstructor
