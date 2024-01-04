@@ -75,7 +75,7 @@ public class PatientController {
     }
 
     @PostMapping("")
-    public int addPatient( @Validated @RequestBody Patient patient) {
+    public int addPatient( @Validated @RequestBody NewPatientDTO patient) {
         return patientRepository.addPatient( patient );
     }
 
@@ -85,7 +85,7 @@ public class PatientController {
     }
 
     @PatchMapping("/{id}")
-    public int updatePatient(@PathVariable int id, @RequestBody Patient updatedPatient) {
+    public int updatePatient(@PathVariable int id, @Validated @RequestBody UpdatePatientDTO updatedPatient) {
 
         Patient patientToUpdate = patientRepository.getByID( id );
         if (updatedPatient.getName() != null) patientToUpdate.setName( updatedPatient.getName() );
@@ -96,6 +96,6 @@ public class PatientController {
         if (updatedPatient.getHasInsurance() != null)
             patientToUpdate.setHasInsurance( updatedPatient.getHasInsurance() );
 
-        return patientRepository.update( patientToUpdate );
+        return patientRepository.update( patientToUpdate);
     }
 }

@@ -18,7 +18,7 @@ public class PatientRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public int addPatient(Patient patient) {
+    public int addPatient(NewPatientDTO patient) {
         int injuryTypeID = patient.getInjuryType().ordinal() + 1;
         return jdbcTemplate.update( "insert into patient (name, age, gender, phone_number, has_insurance, injury_type_id) " +
                         "values (?, ?, ?, ?, ?, ?)",
@@ -36,6 +36,7 @@ public class PatientRepository {
         return jdbcTemplate.queryForObject( "select * from all_info_all_patients where id = ?",
                 BeanPropertyRowMapper.newInstance( Patient.class ), id );
     }
+
 
     public int deleteByID(int id) {
         return jdbcTemplate.update( "delete from patient where id = ?", id );
