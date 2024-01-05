@@ -1,9 +1,17 @@
 package pl.dorota.forphysio.injury_type;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import org.springframework.context.annotation.Bean;
+import lombok.NoArgsConstructor;
+import pl.dorota.forphysio.patient.Patient;
 
-public enum InjuryType {
-    MUSCLES, BONES, NERVES, SKIN;
+@Entity
+@NoArgsConstructor
+@Data
+public class InjuryType {
+    @Id
+    private int id;
+    @Column(name = "name")
+    @Enumerated
+    private InjuryTypeEnum injuryTypeEnum;
 }

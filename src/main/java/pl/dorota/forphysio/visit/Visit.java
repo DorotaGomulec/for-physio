@@ -1,17 +1,19 @@
 package pl.dorota.forphysio.visit;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import pl.dorota.forphysio.patient.Patient;
 
-import java.util.Date;
-
+@Entity
+@NoArgsConstructor
 @Data
-@EqualsAndHashCode
 public class Visit {
-    int visitId;
-    String name;
+    @Id
+    int id;
+    @OneToOne
+    @JoinColumn(name = "patient_id", referencedColumnName = "id")
+    Patient patientId;
+    @Column(length = 15)
     String date;
-
-
-
 }
