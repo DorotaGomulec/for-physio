@@ -47,10 +47,10 @@ public class PatientController {
     public EntityModel<PatientDTO> getAllInfoByID(@PathVariable int id) {
         
         String hisHer = null;
-        if (patientRepository.getByID( id ).getGender() == Gender.MALE) hisHer = "his";
-        if (patientRepository.getByID( id ).getGender() == Gender.FEMALE) hisHer = "her";
+        if (patientRepository.getById( id ).getGender() == Gender.MALE) hisHer = "his";
+        if (patientRepository.getById( id ).getGender() == Gender.FEMALE) hisHer = "her";
         
-        return EntityModel.of( patientRepository.getAllInfoByID( id ),
+        return EntityModel.of( patientRepository.getById( id ),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( id ).withSelfRel(),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( "/all" ).withRel( "all_patient" ),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( id ).withRel( "delete" ),
@@ -85,9 +85,10 @@ public class PatientController {
     }
 
     @PatchMapping("/{id}")
-    public int updatePatient(@PathVariable int id, @Validated @RequestBody UpdatePatientDTO updatedPatient) {
+    public int updatePatient(@PathVariable int id, @RequestBody @Validated UpdatePatientDTO updatedPatient) {
 
-        Patient patientToUpdate = patientRepository.getByID( id );
+
+        PatientDTO patientToUpdate = patientRepository.getById( id );
         if (updatedPatient.getName() != null) patientToUpdate.setName( updatedPatient.getName() );
         if (updatedPatient.getAge() != 0) patientToUpdate.setAge( updatedPatient.getAge() );
         if (updatedPatient.getGender() != null) patientToUpdate.setGender( updatedPatient.getGender() );

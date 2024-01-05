@@ -27,14 +27,14 @@ public class VisitController {
 
 
     @GetMapping("")
-    public CollectionModel<EntityModel<Visit>> getVisits() {
-        List<Visit> visitList = visitRepository.getVisits();
-        List<EntityModel<Visit>> entityVisitList = visitList
+    public CollectionModel<EntityModel<VisitDTO>> getVisits() {
+        List<VisitDTO> visitDTOList = visitRepository.getVisits();
+        List<EntityModel<VisitDTO>> entityVisitList = visitDTOList
                 .stream()
-                .map( visit -> EntityModel.of( visit ) )
+                .map( visitDTO -> EntityModel.of( visitDTO ) )
                 .toList();
 
-        for (EntityModel<Visit> visitEntityModel : entityVisitList) {
+        for (EntityModel<VisitDTO> visitEntityModel : entityVisitList) {
             int visitId = visitEntityModel.getContent().getVisitId();
             visitEntityModel.add( WebMvcLinkBuilder.linkTo( VisitController.class ).slash( visitId ).withRel( "delete_visit" ) );
         }
@@ -44,13 +44,13 @@ public class VisitController {
     }
 
     @GetMapping("/{patientId}")
-    public CollectionModel<EntityModel<Visit>> getPatientsVisits(@PathVariable int patientId) {
-        List<Visit> visitList = visitRepository.getPatientsVisit( patientId );
-        List<EntityModel<Visit>> visitEntityList = visitList
+    public CollectionModel<EntityModel<VisitDTO>> getPatientsVisits(@PathVariable int patientId) {
+        List<VisitDTO> visitDTOList = visitRepository.getPatientsVisit( patientId );
+        List<EntityModel<VisitDTO>> visitEntityList = visitDTOList
                 .stream()
-                .map( visit -> EntityModel.of( visit ) ).toList();
+                .map( visitDTO -> EntityModel.of( visitDTO ) ).toList();
 
-        for (EntityModel<Visit> visitEntityModel : visitEntityList) {
+        for (EntityModel<VisitDTO> visitEntityModel : visitEntityList) {
             visitEntityModel.add( WebMvcLinkBuilder.linkTo( VisitController.class ).withSelfRel().withRel( "all_visits_all_patients" ));
         }
 

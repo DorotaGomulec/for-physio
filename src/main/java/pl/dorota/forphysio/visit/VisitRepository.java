@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import pl.dorota.forphysio.visit.Visit;
 
 import java.util.List;
 
@@ -21,14 +20,14 @@ public class VisitRepository {
         return jdbcTemplate.update( "insert into visit (patient_id,date) values (?, curdate())",patientID );
     }
 
-    public List<Visit> getVisits() {
-        return jdbcTemplate.query( "select * from  all_visits_all_patients", BeanPropertyRowMapper.newInstance( Visit.class ) );
+    public List<VisitDTO> getVisits() {
+        return jdbcTemplate.query( "select * from  all_visits_all_patients", BeanPropertyRowMapper.newInstance( VisitDTO.class ) );
     }
 
-    public List<Visit>
+    public List<VisitDTO>
     getPatientsVisit(int id) {
         return jdbcTemplate.query( "select * from  all_visits_all_patients where patient_id=?",
-                BeanPropertyRowMapper.newInstance( Visit.class ), id);
+                BeanPropertyRowMapper.newInstance( VisitDTO.class ), id);
     }
 
 

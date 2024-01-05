@@ -4,10 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import pl.dorota.forphysio.patient.NewPatientDTO;
-import pl.dorota.forphysio.patient.Patient;
-import pl.dorota.forphysio.patient.PatientContactDTO;
-import pl.dorota.forphysio.patient.PatientDTO;
 
 import java.util.List;
 
@@ -35,14 +31,9 @@ public class PatientRepository {
                 BeanPropertyRowMapper.newInstance( PatientDTO.class ) );
     }
 
-    public PatientDTO getAllInfoByID(int id) {
+    public PatientDTO getById(int id) {
         return jdbcTemplate.queryForObject( "select * from all_info_all_patients where id = ?",
                 BeanPropertyRowMapper.newInstance( PatientDTO.class ), id );
-    }
-
-    public Patient getByID(int id) {
-        return jdbcTemplate.queryForObject( "select * from all_info_all_patients where id = ?",
-                BeanPropertyRowMapper.newInstance( Patient.class ), id );
     }
 
 
@@ -51,8 +42,8 @@ public class PatientRepository {
     }
 
     public List<PatientContactDTO> getContacts() {
-        List<Patient> patientList = jdbcTemplate.query( "select * from contacts_to_patients",
-                BeanPropertyRowMapper.newInstance( Patient.class ) );
+        List<PatientDTO> patientList = jdbcTemplate.query( "select * from contacts_to_patients",
+                BeanPropertyRowMapper.newInstance( PatientDTO.class ) );
 
         List<PatientContactDTO> contactList = patientList.stream()
                 .map( patient -> new PatientContactDTO( patient.getId(), patient.getName(), patient.getPhoneNumber() ) ).toList();
@@ -60,7 +51,7 @@ public class PatientRepository {
         return contactList;
     }
 
-    public int update(Patient updatedPatient) {
+    public int update(PatientDTO updatedPatient) {
         int injutyTypeId = updatedPatient.getInjuryType().ordinal() + 1;
         return jdbcTemplate.update( "UPDATE patient SET name=?, age=?, gender=?, phone_number=?, has_insurance=?, injury_type_id=? WHERE id = ?",
                 updatedPatient.getName(), updatedPatient.getAge(), updatedPatient.getGender().name(),
