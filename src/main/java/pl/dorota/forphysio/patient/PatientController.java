@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.dorota.forphysio.visit.VisitController;
@@ -45,11 +48,11 @@ public class PatientController {
 
     @GetMapping("/{id}")
     public EntityModel<PatientDTO> getAllInfoByID(@PathVariable int id) {
-        
+
         String hisHer = null;
         if (patientRepository.getById( id ).getGender() == Gender.MALE) hisHer = "his";
         if (patientRepository.getById( id ).getGender() == Gender.FEMALE) hisHer = "her";
-        
+
         return EntityModel.of( patientRepository.getById( id ),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( id ).withSelfRel(),
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( "/all" ).withRel( "all_patient" ),
@@ -57,6 +60,7 @@ public class PatientController {
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( id ).withRel( "update" ),
                 WebMvcLinkBuilder.linkTo( VisitController.class ).slash( id ).withRel( hisHer + "_visits" ) );
     }
+
 
     @GetMapping("/contact")
     public CollectionModel<EntityModel<PatientContactDTO>> getContacts() {
@@ -73,7 +77,7 @@ public class PatientController {
         return CollectionModel.of( entityPatientContactList,
                 WebMvcLinkBuilder.linkTo( PatientController.class ).slash( "contact" ).withSelfRel() );
     }
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public int addPatient( @Validated @RequestBody NewPatientDTO patient) {
         return patientRepository.addPatient( patient );
@@ -89,8 +93,8 @@ public class PatientController {
 
 
         PatientDTO patientToUpdate = patientRepository.getById( id );
-        if (updatedPatient.getName() != null) patientToUpdate.setName( updatedPatient.getName() );
-        if (updatedPatient.getAge() != 0) patientToUpdate.setAge( updatedPatient.getAge() );
+        if (!updatedPatient.getName().isBlank()) patientToUpdate.setName( updatedPatient.getName() );
+        if (updatedPatient.getAge() >= 0) patientToUpdate.setAge( updatedPatient.getAge() );
         if (updatedPatient.getGender() != null) patientToUpdate.setGender( updatedPatient.getGender() );
         if (updatedPatient.getInjuryType() != null) patientToUpdate.setInjuryType( updatedPatient.getInjuryType() );
         if (updatedPatient.getPhoneNumber() != null) patientToUpdate.setPhoneNumber( updatedPatient.getPhoneNumber() );

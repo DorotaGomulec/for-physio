@@ -17,7 +17,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @Valid
 public class UpdatePatientDTO {
-
+    
     @NotBlank(message = "Field name can not be blank")
     private String name;
     @Min( value = 0 , message = "Minimum value of age has to be 0" )
