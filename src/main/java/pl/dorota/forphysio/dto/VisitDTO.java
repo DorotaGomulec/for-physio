@@ -1,4 +1,4 @@
-package pl.dorota.forphysio.visit;
+package pl.dorota.forphysio.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

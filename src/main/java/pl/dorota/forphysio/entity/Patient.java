@@ -1,10 +1,8 @@
-package pl.dorota.forphysio.patient;
+package pl.dorota.forphysio.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Null;
 import lombok.*;
-import pl.dorota.forphysio.injury_type.InjuryType;
-import pl.dorota.forphysio.injury_type.InjuryTypeEnum;
+import pl.dorota.forphysio.Gender;
 
 @Data
 @NoArgsConstructor

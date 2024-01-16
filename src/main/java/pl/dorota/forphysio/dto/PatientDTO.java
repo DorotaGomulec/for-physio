@@ -1,7 +1,8 @@
-package pl.dorota.forphysio.patient;
+package pl.dorota.forphysio.dto;
 
 import lombok.Data;
-import pl.dorota.forphysio.injury_type.InjuryTypeEnum;
+import pl.dorota.forphysio.InjuryTypeEnum;
+import pl.dorota.forphysio.Gender;
 
 @Data
 public class PatientDTO {

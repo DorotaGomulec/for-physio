@@ -1,13 +1,13 @@
 package pl.dorota.forphysio.patient;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import pl.dorota.forphysio.injury_type.InjuryTypeEnum;
-
-import static org.junit.jupiter.api.Assertions.*;
+import pl.dorota.forphysio.Gender;
+import pl.dorota.forphysio.dto.PatientDTO;
+import pl.dorota.forphysio.dto.UpdatePatientDTO;
+import pl.dorota.forphysio.InjuryTypeEnum;
 
 class PatientControllerTest {
 
@@ -15,7 +15,7 @@ class PatientControllerTest {
 
     @BeforeEach
     void before(){
-        patientToUpdate = createMock( 1,"Adam Kowalski",30,Gender.MALE, "509 509 509", InjuryTypeEnum.MUSCLES,true );
+        patientToUpdate = createMock( 1,"Adam Kowalski",30, Gender.MALE, "509 509 509", InjuryTypeEnum.MUSCLES,true );
     }
 
     @Test

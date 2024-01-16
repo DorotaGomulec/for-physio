@@ -1,9 +1,9 @@
-package pl.dorota.forphysio.visit;
+package pl.dorota.forphysio.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.dorota.forphysio.patient.Patient;
+import pl.dorota.forphysio.entity.Patient;
 
 @Entity
 @NoArgsConstructor

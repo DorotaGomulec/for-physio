@@ -1,4 +1,4 @@
-package pl.dorota.forphysio.injury_type;
+package pl.dorota.forphysio.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -7,6 +7,8 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.dorota.forphysio.dto.InjuryTypeDTO;
+import pl.dorota.forphysio.repository.InjuryTypeRepository;
 
 import java.util.List;
 

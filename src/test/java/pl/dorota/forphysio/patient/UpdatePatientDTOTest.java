@@ -6,10 +6,9 @@ import jakarta.validation.Validator;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.dorota.forphysio.dto.UpdatePatientDTO;
 
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UpdatePatientDTOTest{
     private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();;

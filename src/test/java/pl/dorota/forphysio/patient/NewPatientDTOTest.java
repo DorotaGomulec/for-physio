@@ -3,12 +3,10 @@ package pl.dorota.forphysio.patient;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import pl.dorota.forphysio.dto.NewPatientDTO;
 
 import java.util.Set;
 

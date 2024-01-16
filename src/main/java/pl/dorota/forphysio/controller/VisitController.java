@@ -1,4 +1,4 @@
-package pl.dorota.forphysio.visit;
+package pl.dorota.forphysio.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -6,6 +6,8 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.*;
+import pl.dorota.forphysio.repository.VisitRepository;
+import pl.dorota.forphysio.dto.VisitDTO;
 
 import java.util.List;
 

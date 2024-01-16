@@ -1,9 +1,12 @@
-package pl.dorota.forphysio.patient;
+package pl.dorota.forphysio.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pl.dorota.forphysio.dto.NewPatientDTO;
+import pl.dorota.forphysio.dto.PatientContactDTO;
+import pl.dorota.forphysio.dto.PatientDTO;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package pl.dorota.forphysio.injury_type;
+package pl.dorota.forphysio.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.dorota.forphysio.patient.Patient;
+import pl.dorota.forphysio.InjuryTypeEnum;
 
 @Entity
 @NoArgsConstructor

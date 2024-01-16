@@ -1,4 +1,4 @@
-package pl.dorota.forphysio.patient;
+package pl.dorota.forphysio;
 
 public enum Gender {
     MALE, FEMALE;

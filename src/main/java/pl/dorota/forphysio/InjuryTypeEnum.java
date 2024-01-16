@@ -1,4 +1,4 @@
-package pl.dorota.forphysio.injury_type;
+package pl.dorota.forphysio;
 
 public enum InjuryTypeEnum {
     MUSCLES, BONES, NERVES, SKIN;

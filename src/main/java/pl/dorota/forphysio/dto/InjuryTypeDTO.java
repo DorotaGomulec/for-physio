@@ -1,7 +1,8 @@
-package pl.dorota.forphysio.injury_type;
+package pl.dorota.forphysio.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pl.dorota.forphysio.InjuryTypeEnum;
 
 @Getter
 @AllArgsConstructor

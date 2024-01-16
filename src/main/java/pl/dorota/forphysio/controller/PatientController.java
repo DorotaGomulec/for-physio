@@ -1,15 +1,18 @@
-package pl.dorota.forphysio.patient;
+package pl.dorota.forphysio.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.dorota.forphysio.visit.VisitController;
+import pl.dorota.forphysio.Gender;
+import pl.dorota.forphysio.dto.NewPatientDTO;
+import pl.dorota.forphysio.dto.PatientContactDTO;
+import pl.dorota.forphysio.dto.PatientDTO;
+import pl.dorota.forphysio.dto.UpdatePatientDTO;
+import pl.dorota.forphysio.repository.PatientRepository;
 
 import java.util.List;
 
