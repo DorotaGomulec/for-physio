@@ -1,4 +1,4 @@
-package pl.dorota.forphysio.patient;
+package pl.dorota.forphysio.dto;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -6,21 +6,22 @@ import jakarta.validation.Validator;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.dorota.forphysio.dto.UpdatePatientDTO;
+import pl.dorota.forphysio.dto.NewPatientDTO;
 
 import java.util.Set;
 
-class UpdatePatientDTOTest{
+class NewPatientDTOTest {
+
     private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();;
-    private UpdatePatientDTO patient;
+    private NewPatientDTO patient;
     private String name;
     private int age;
     private String phoneNumber;
-    private Set<ConstraintViolation<UpdatePatientDTO>> violations;
+    private Set<ConstraintViolation<NewPatientDTO>> violations;
 
     @BeforeEach
     void beforeEach() {
-        patient = new UpdatePatientDTO();
+        patient = new NewPatientDTO();
     }
 
     @Test

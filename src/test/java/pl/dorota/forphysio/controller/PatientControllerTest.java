@@ -1,4 +1,4 @@
-package pl.dorota.forphysio.patient;
+package pl.dorota.forphysio.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
